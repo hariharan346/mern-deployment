@@ -10,13 +10,17 @@ pipeline {
 
         stage('Build Backend Image') {
             steps {
-                sh 'docker build -t mern-backend ./backend'
+                dir('without-admin-/backend') {
+                    sh 'docker build -t mern-backend .'
+                }
             }
         }
 
         stage('Build Frontend Image') {
             steps {
-                sh 'docker build -t mern-frontend .'
+                dir('without-admin-') {
+                    sh 'docker build -t mern-frontend .'
+                }
             }
         }
     }
