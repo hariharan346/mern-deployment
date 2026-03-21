@@ -43,7 +43,7 @@ export const Footer = () => {
             <ul className="space-y-2">
               {isLoading && <li>Loading services...</li>}
               {isError && <li>Error loading services.</li>}
-              {categories &&
+              {Array.isArray(categories) &&
                 categories.slice(0, 5).map((category) => (
                   <li key={category._id}>
                     <Link

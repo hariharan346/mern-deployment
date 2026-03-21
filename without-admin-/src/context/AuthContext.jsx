@@ -29,12 +29,12 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   // ✅ LOGIN (USE RESPONSE USER – DO NOT CALL /me HERE)
-const login = async (email, password) => {
-  const res = await api.post("/auth/login", { email, password });
-  localStorage.setItem("token", res.data.token);
-  setUser({ _id: res.data._id, name: res.data.name, email: res.data.email, role: res.data.role });
-  return { _id: res.data._id, name: res.data.name, email: res.data.email, role: res.data.role };
-};
+  const login = async (email, password) => {
+    const res = await api.post("/auth/login", { email, password });
+    localStorage.setItem("token", res.data.token);
+    setUser({ _id: res.data._id, name: res.data.name, email: res.data.email, role: res.data.role });
+    return { _id: res.data._id, name: res.data.name, email: res.data.email, role: res.data.role };
+  };
 
 
   // ✅ REGISTER

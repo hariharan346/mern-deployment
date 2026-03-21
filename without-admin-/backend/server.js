@@ -41,7 +41,13 @@ app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/reports", reportRoutes);
 
+app.use((err, req, res, next) => {
+  console.error("Global Express Error:", err.message || err);
+  res.status(err.status || 500).json({
+    message: err.message || typeof err === "string" ? err : "Internal Server Error"
+  });
+});
+
 app.listen(5000, () =>
   console.log("Server running on http://localhost:5000")
 );
-

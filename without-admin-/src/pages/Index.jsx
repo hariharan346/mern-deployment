@@ -191,7 +191,7 @@ const Index = () => {
             {isLoadingCategories && <p>Loading categories...</p>}
             {isErrorCategories && <p>Error fetching categories.</p>}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-              {categories && categories.map((category, index) => (
+              {Array.isArray(categories) && categories.map((category, index) => (
                 <CategoryCard
                   key={category._id}
                   category={category}
@@ -262,7 +262,7 @@ const Index = () => {
             {isLoadingVendors && <p>Loading vendors...</p>}
             {isErrorVendors && <p>Error fetching vendors.</p>}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {vendors &&
+              {Array.isArray(vendors) &&
                 vendors
                   .filter((v) => v.rating >= 4.7) // Assuming vendors have a rating field
                   .slice(0, 6)

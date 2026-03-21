@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
     } else if (req.originalUrl.includes("/services")) {
       uploadPath += "services/";
     }
-    
+
     fs.mkdirSync(uploadPath, { recursive: true });
     cb(null, uploadPath);
   },
@@ -21,14 +21,14 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  const allowedFileTypes = /jpeg|jpg|png|gif/;
+  const allowedFileTypes = /jpeg|jpg|png|gif|webp|avif/;
   const mimetype = allowedFileTypes.test(file.mimetype);
   const extname = allowedFileTypes.test(path.extname(file.originalname).toLowerCase());
 
   if (mimetype && extname) {
     return cb(null, true);
   }
-  cb("Error: File upload only supports the following filetypes - " + allowedFileTypes);
+  cb(new Error("File upload only supports the following filetypes - " + allowedFileTypes));
 };
 
 const upload = multer({
