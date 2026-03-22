@@ -7,12 +7,6 @@ pipeline {
 
     stages {
 
-        stage('Clone Code') {
-            steps {
-                git url: 'https://github.com/hariharan346/mern-deployment.git', branch: 'main'
-            }
-        }
-
         stage('Build Backend Image') {
             steps {
                 dir('without-admin-/backend') {
